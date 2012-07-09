@@ -3,8 +3,8 @@ require 'open-uri'
 require 'nokogiri'
 class HtmlParse
 
-  def title(obj)
-    title_text = obj.match(/<title>(.*)<\/title>/m)[1].strip
+  def title_tag(obj,tag_val)   # self define title method
+    title_text = obj.match(/<#{tag_val}>(.*)<\/#{tag_val}>/m)[1].strip
   end
 
   def download
@@ -14,10 +14,10 @@ class HtmlParse
   end
 
   def title_bod
-    p "Enter the tag you want to see : "
+    obj = download
+    puts "Enter the tag you want to see : "
     tag_val = gets
-
-       title download
+    title_tag obj,tag_val.strip
 
   end
 
@@ -48,26 +48,11 @@ class HtmlParse
 
 end
 
+begin
 html = HtmlParse.new
-p html.search_tag_with_id.text
-
-
-=begin
-
-div_obj_2 = noko_obj.css('div#gbw')
-puts "The text of the div is : "+div_obj_2.text
-
-div_obj_2.each do |key,value|
-  puts "#{key} with the value : "+value.to_s
+#p html.search_tag_with_id.text
+#p html.title_bod
+html.attributes_list
+rescue NoMethodError
+  retry
 end
-
-
-puts "It is returning a lot.."
-
-puts "We want to take the li only.."
-div_obj_3 = noko_obj.css('div#gbw li')
-
-puts "The number of li s are : "+div_obj_3.length.to_s
-puts "The text of li s are : "+div_obj_3[0].text
-
-=end
