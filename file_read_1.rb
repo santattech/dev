@@ -49,10 +49,10 @@ class HtmlParse
 end
 
 begin
-html = HtmlParse.new
-#p html.search_tag_with_id.text
-#p html.title_bod
-html.attributes_list
+  html = HtmlParse.new
+  #p html.search_tag_with_id.text
+  #p html.title_bod
+  html.attributes_list
 rescue NoMethodError
   retry
 end
