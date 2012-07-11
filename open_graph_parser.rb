@@ -8,13 +8,17 @@ module OpenGraph
 
     def self.common_meth(web_url,tag)
       noko_obj = Nokogiri::HTML(open(web_url){ |f| f.read})
+      #noko_obj = Nokogiri::HTML(File.open('rock.html'){ |f| f.read})
+      content_arr = []
       obj = noko_obj.css("meta")
       obj.each do |content|
         status = (content['property'].to_s == tag)
         if status
-          return content['content']
+          content_arr << content['content']
         end
       end
+      return content_arr
+
     end
   end
 
@@ -138,6 +142,6 @@ module OpenGraph
     def type
       CommonParser.common_meth(@url,"og:audio:type")
     end
-
   end
+
 end
