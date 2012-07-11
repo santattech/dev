@@ -14,4 +14,15 @@ class CommonParser
     end
 
   end
+
+  def self.key
+    noko_obj = Nokogiri::HTML(open(web_url){ |f| f.read})
+    obj = noko_obj.css("meta")
+    obj.each do |content|
+        status = (content['property'].to_s == tag)
+        if status
+          key_arr << content['property']
+        end
+    end
+  end
 end
