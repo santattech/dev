@@ -5,7 +5,7 @@ require 'json'
 
 module Oembed
 
-  class HtmlParser
+  class OembedParser
     def initialize(url)
       @url = url
     end
@@ -63,7 +63,7 @@ module Oembed
   end
 
 
-  class OembedParser
+  class OembedParserXml
 
     def initialize(api_end_point_url,schema_url)
       @api_end_point_url = api_end_point_url
